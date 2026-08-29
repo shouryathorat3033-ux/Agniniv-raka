@@ -17,16 +17,22 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-# ── Load .env from data_ingestion/ directory ──────────────────
-_HERE = Path(__file__).parent.parent  # data_ingestion/
-load_dotenv(_HERE / ".env", override=False)
+# ── Load .env from project root (one level above data_ingestion/) ─
+_HERE        = Path(__file__).resolve().parent.parent  # data_ingestion/
+_PROJECT_ROOT = _HERE.parent                            # SIH_Hackthon/
+
+# Load project-root .env first (highest priority for real secrets),
+# then fall back to data_ingestion/.env for any overrides.
+load_dotenv(_PROJECT_ROOT / ".env", override=False)
+load_dotenv(_HERE / ".env", override=False)  # legacy / local overrides (if present)
 
 
 # ── Database ──────────────────────────────────────────────────
 DATABASE_URL: str = os.environ["DATABASE_URL"]
 
 # ── Dataset root paths ────────────────────────────────────────
-_DATASET_ROOT = Path(os.getenv("DATASET_ROOT", "../dataset")).resolve()
+# Default: resolve relative to project root, NOT the cwd.
+_DATASET_ROOT = Path(os.getenv("DATASET_ROOT", str(_PROJECT_ROOT / "dataset"))).resolve()
 
 FIRMS_RAW_PATH            = Path(os.getenv("FIRMS_RAW_PATH",            str(_DATASET_ROOT / "raw/firms"))).resolve()
 HISTORICAL_FIRMS_RAW_PATH = Path(os.getenv("HISTORICAL_FIRMS_RAW_PATH", str(_DATASET_ROOT / "raw/historical_firms"))).resolve()

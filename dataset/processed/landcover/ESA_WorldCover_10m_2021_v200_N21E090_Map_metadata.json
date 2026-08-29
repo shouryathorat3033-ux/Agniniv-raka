@@ -1,0 +1,30 @@
+{
+  "path": "dataset\\raw\\landcover\\worldcover_2021\\ESA_WorldCover_10m_2021_v200_N21E090_Map.tif",
+  "driver": "GTiff",
+  "width": 36000,
+  "height": 36000,
+  "band_count": 1,
+  "crs": "EPSG:4326",
+  "crs_epsg": 4326,
+  "transform": [
+    8.333333333333333e-05,
+    0.0,
+    90.0,
+    0.0,
+    -8.333333333333333e-05,
+    24.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "bounds": {
+    "left": 90.0,
+    "bottom": 21.0,
+    "right": 93.0,
+    "top": 24.0
+  },
+  "dtype": "uint8",
+  "nodata": 0.0,
+  "res_x": 8.333333333333333e-05,
+  "res_y": 8.333333333333333e-05
+}

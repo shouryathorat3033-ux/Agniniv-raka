@@ -29,7 +29,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change_me_strong_password}
 
     ports:
-      - "${POSTGRES_PORT:-5432}:5432"
+      - "${POSTGRES_PORT:-5433}:5432"
 
     volumes:
       # Persistent data volume — survives container restarts
@@ -64,10 +64,10 @@ volumes:
 # 2. Run:  docker compose --env-file .env up -d
 # 3. Wait for healthy:  docker compose ps
 # 4. Connect:
-#      psql postgresql://heatwatch_user:change_me@localhost:5432/heatwatch
+#      psql postgresql://heatwatch_user:change_me@localhost:5433/heatwatch
 # 5. Run migrations:
 #      bash database/scripts/migrate.sh
 #
-# The container exposes port 5432 on the host by default.
+# The container exposes port 5433 on the host by default.
 # Change POSTGRES_PORT in .env if you have a conflict.
 # =============================================================
