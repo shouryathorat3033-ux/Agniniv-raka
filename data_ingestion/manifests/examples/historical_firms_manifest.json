@@ -1,0 +1,15 @@
+{
+  "dataset_name": "NASA FIRMS Historical — MODIS Terra 2019–2023",
+  "dataset_type": "historical_firms",
+  "source": "NASA_FIRMS",
+  "source_url": "https://firms.modaps.eosdis.nasa.gov/download/",
+  "source_reference": "fire_archive_M-C61_India_2019_2023",
+  "file_path": "../dataset/raw/historical_firms/",
+  "file_format": "CSV",
+  "crs": "EPSG:4326",
+  "temporal_start": "2019-01-01T00:00:00Z",
+  "temporal_end": "2023-12-31T23:59:59Z",
+  "spatial_extent": {"min_lon": 60.0, "min_lat": 5.0, "max_lon": 100.0, "max_lat": 40.0},
+  "version": "Collection 61",
+  "ingestion_options": {"chunk_size": 50000}
+}

@@ -1,0 +1,40 @@
+==============================================================
+HeatWatch -- STAC Pagination Diagnostic Report
+==============================================================
+Timestamp        : 2026-08-29T06:35:28Z
+Endpoint         : https://catalogue.dataspace.copernicus.eu/stac/search
+Collection       : sentinel-2-l2a
+BBox             : [68.1, 7.9, 97.4, 37.1]
+Date range       : 2022-01-01T00:00:00Z/2024-12-31T23:59:59Z
+Limit requested  : 3
+HTTP status      : 200
+Features returned: 3
+
+ALL LINKS
+----------------------------------------
+  Link [0]
+    rel    : next
+    href   : https://stac.dataspace.copernicus.eu/v1/search
+    type   : application/geo+json
+    method : POST
+    body   : {"collections": ["sentinel-2-l2a"], "bbox": [68.1, 7.9, 97.4, 37.1], "datetime": "2022-01-01T00:00:00Z/2024-12-31T23:59:59Z", "limit": 3, "token": "next:sentinel-2-l2a:S2A_MSIL2A_20241231T061251_N0511_R134_T42SXE_20241231T085650"}
+
+  Link [1]
+    rel    : root
+    href   : https://stac.dataspace.copernicus.eu/v1/
+    type   : application/json
+    method : (not specified)
+    body   : (not present)
+
+  Link [2]
+    rel    : self
+    href   : https://stac.dataspace.copernicus.eu/v1/search
+    type   : application/json
+    method : (not specified)
+    body   : (not present)
+
+NEXT LINK PRESENT : YES
+
+IMAGERY DOWNLOADED: NO
+
+==============================================================

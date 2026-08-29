@@ -1,0 +1,103 @@
+# =============================================================
+# HEATWATCH — .gitignore
+# =============================================================
+
+# ── Python ────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+*.whl
+.eggs/
+
+# ── Virtual environments ──────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+
+# ── Credentials and secrets ───────────────────────────────────
+.env
+*.env
+!*.env.example
+database/.env
+
+# ── Logs ─────────────────────────────────────────────────────
+*.log
+data_ingestion/logs/*.log
+data_ingestion/logs/*.jsonl
+!data_ingestion/logs/.gitkeep
+
+# ── Large dataset files (NEVER commit) ───────────────────────
+# Raw FIRMS CSV / NetCDF
+dataset/raw/**/*.csv
+dataset/raw/**/*.nc
+dataset/raw/**/*.zip
+dataset/raw/**/*.gz
+dataset/raw/**/*.bz2
+# GeoTIFF / satellite imagery / rasters
+dataset/raw/**/*.tif
+dataset/raw/**/*.tiff
+dataset/raw/**/*.img
+dataset/raw/**/*.hdf
+dataset/raw/**/*.hdf5
+dataset/raw/**/*.h5
+dataset/raw/**/*.jp2
+dataset/raw/**/*.SAFE
+# OSM extracts
+dataset/raw/**/*.pbf
+dataset/raw/**/*.osm
+dataset/raw/**/*.osm.gz
+# GeoPackage / Shapefile
+dataset/raw/**/*.gpkg
+dataset/raw/**/*.shp
+dataset/raw/**/*.shx
+dataset/raw/**/*.dbf
+dataset/raw/**/*.prj
+# GeoJSON (may be large)
+dataset/raw/**/*.geojson
+dataset/raw/**/*.json
+
+# ── Processed outputs (generated — do not commit) ─────────────
+dataset/processed/**/*.csv
+dataset/processed/**/*.parquet
+dataset/processed/**/*.geojson
+dataset/processed/**/*.gpkg
+dataset/processed/**/*.tif
+dataset/processed/**/*.tiff
+
+# ── Rejected records (auto-generated) ─────────────────────────
+dataset/rejected/**/*.csv
+dataset/rejected/**/*.json
+dataset/rejected/**/*.geojson
+
+# ── Keep .gitkeep files in place ──────────────────────────────
+!dataset/**/.gitkeep
+
+# ── IDE / OS ─────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ── Pytest ───────────────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ── Mypy / type checking ──────────────────────────────────────
+.mypy_cache/
+
+# Keep India boundary required by processing scripts
+!dataset/raw/boundaries/india_boundary.geojson
+
+# Temporary download files
+*.tif.*

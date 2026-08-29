@@ -1,0 +1,112 @@
+==============================================================
+HeatWatch -- Sentinel-2 India Metadata Discovery Report (v3)
+==============================================================
+Timestamp             : 2026-08-29T13:36:53Z
+Script                : /app/dataset/processed/satellite/discover_india_sentinel2.py
+
+SEARCH PARAMETERS
+----------------------------------------
+Strategy              : Year-by-year (avoids CDSE reverse-chron cap)
+STAC endpoint         : https://catalogue.dataspace.copernicus.eu/stac/search
+Collection            : sentinel-2-l2a
+India bbox            : [68.1, 7.9, 97.4, 37.1]
+Years searched        : 2022, 2023, 2024
+Cloud threshold       : <= 20%  (client-side)
+Max items cap/year    : 5,000
+Page size             : 100
+Retry max             : 5 attempts
+
+BOUNDARY DATASET
+----------------------------------------
+File                  : /app/dataset/raw/boundaries/india_boundary.geojson
+Status                : Loaded from india_boundary.geojson  (1 feature(s))
+Spatial filter        : Shapely polygon intersection with india_boundary.geojson
+
+TOTALS ACROSS ALL YEARS
+----------------------------------------
+Total pages           : 150
+Total API requests    : 150
+Total retries         : 0
+Raw unique items      : 15,000
+Skipped cloud > 20%   : 5,435
+Missing cloud kept    : 0
+Skipped outside India : 4,971
+Total retained        : 4,594
+Rows written to CSV   : 4,594
+
+YEAR-BY-YEAR BREAKDOWN
+----------------------------------------
+
+  Year 2022  (2022-01-01T00:00:00Z/2022-12-31T23:59:59Z)
+    Pages          : 50
+    API requests   : 50
+    Retries        : 0
+    Raw unique     : 5,000
+    Cloud rejected : 1,631
+    India rejected : 1,618
+    Retained       : 1,751
+    Earliest       : 2022-12-16
+    Latest         : 2022-12-31
+    Cap reached    : YES
+
+  Year 2023  (2023-01-01T00:00:00Z/2023-12-31T23:59:59Z)
+    Pages          : 50
+    API requests   : 50
+    Retries        : 0
+    Raw unique     : 5,000
+    Cloud rejected : 1,796
+    India rejected : 1,812
+    Retained       : 1,392
+    Earliest       : 2023-12-16
+    Latest         : 2023-12-31
+    Cap reached    : YES
+
+  Year 2024  (2024-01-01T00:00:00Z/2024-12-31T23:59:59Z)
+    Pages          : 50
+    API requests   : 50
+    Retries        : 0
+    Raw unique     : 5,000
+    Cloud rejected : 2,008
+    India rejected : 1,541
+    Retained       : 1,451
+    Earliest       : 2024-12-18
+    Latest         : 2024-12-31
+    Cap reached    : YES
+
+YEAR COMPLETENESS     : COMPLETE
+
+ACQUISITION STATISTICS
+----------------------------------------
+Earliest acquisition  : 2022-12-16
+Latest   acquisition  : 2024-12-31
+Unique dates          : 46
+Unique MGRS tiles     : 1
+Platform breakdown    :
+  sentinel-2a                   : 2,180
+  sentinel-2b                   : 2,218
+  sentinel-2c                   : 196
+
+IMAGERY DOWNLOADED    : NO
+
+==============================================================
+INDIA-ONLY VALIDATION
+==============================================================
+
+DATE RANGE:
+2022-01-01 -> 2024-12-31
+
+GEOGRAPHIC FILTER:
+India  --  INDIA-ONLY (polygon intersection)
+Initial India bounding-box filter used as STAC query optimisation.
+Results spatially verified against india_boundary.geojson.
+
+SENTINEL COLLECTION:
+sentinel-2-l2a
+
+IMAGERY DOWNLOADED:
+NO
+
+METADATA QUERY STATUS:
+SUCCESS -- 4,594 rows written to CSV.
+
+==============================================================

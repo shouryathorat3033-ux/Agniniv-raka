@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "HEATWATCH Dataset Manifest",
+  "description": "Standard manifest format for all six HEATWATCH ingested datasets.",
+  "type": "object",
+  "required": ["dataset_name", "dataset_type", "source", "file_format"],
+  "properties": {
+    "dataset_name":      { "type": "string", "description": "Human-readable dataset name" },
+    "dataset_type":      { "type": "string", "enum": ["firms", "historical_firms", "osm", "landcover", "industrial", "satellite"] },
+    "source":            { "type": "string", "description": "Data provider (e.g. NASA_FIRMS, OSM, ESA)" },
+    "source_url":        { "type": ["string", "null"], "description": "URL where dataset was obtained" },
+    "source_reference":  { "type": ["string", "null"], "description": "Dataset identifier or DOI" },
+    "file_path":         { "type": ["string", "null"], "description": "Local path to raw file" },
+    "file_format":       { "type": "string", "description": "e.g. CSV, GeoJSON, GeoTIFF, GeoPackage, SAFE" },
+    "crs":               { "type": ["string", "null"], "description": "Coordinate reference system (e.g. EPSG:4326)" },
+    "temporal_start":    { "type": ["string", "null"], "format": "date-time" },
+    "temporal_end":      { "type": ["string", "null"], "format": "date-time" },
+    "spatial_extent":    {
+      "type": ["object", "null"],
+      "description": "Approximate bounding box",
+      "properties": {
+        "min_lon": { "type": "number" },
+        "min_lat": { "type": "number" },
+        "max_lon": { "type": "number" },
+        "max_lat": { "type": "number" }
+      }
+    },
+    "version":           { "type": ["string", "null"], "description": "Dataset version string" },
+    "checksum":          { "type": ["string", "null"], "description": "SHA256 or MD5 checksum of the raw file" },
+    "record_count":      { "type": ["integer", "null"], "description": "Number of records/features in dataset" },
+    "ingestion_options": { "type": ["object", "null"], "description": "Pipeline-specific options" }
+  }
+}

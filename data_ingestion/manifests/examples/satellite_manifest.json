@@ -1,0 +1,13 @@
+{
+  "dataset_name": "Sentinel-2 L2A — Gujarat June 2024",
+  "dataset_type": "satellite",
+  "source": "SENTINEL_2",
+  "source_url": "https://browser.dataspace.copernicus.eu/",
+  "source_reference": "S2A_MSIL2A_20240615T054651_N0510_R091_T43RGP_20240615T092034",
+  "file_path": "../dataset/raw/satellite/S2A_MSIL2A_20240615T054651.SAFE",
+  "file_format": "SAFE",
+  "crs": "EPSG:32643",
+  "temporal_start": "2024-06-15T05:46:51Z",
+  "temporal_end": "2024-06-15T05:46:51Z",
+  "ingestion_options": {"max_cloud_pct": 20}
+}

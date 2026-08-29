@@ -1,0 +1,12 @@
+{
+  "dataset_name": "Global Energy Monitor — Power Plants 2024",
+  "dataset_type": "industrial",
+  "source": "GEM_2024",
+  "source_url": "https://globalenergymonitor.org/",
+  "source_reference": "GEM_GlobalPowerPlantTracker_2024",
+  "file_path": "../dataset/raw/industrial/gem_power_plants_2024.csv",
+  "file_format": "CSV",
+  "crs": "EPSG:4326",
+  "version": "2024-Q1",
+  "ingestion_options": {"batch_size": 500, "source_name": "GEM_2024"}
+}

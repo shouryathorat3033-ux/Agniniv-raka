@@ -1,0 +1,73 @@
+# =============================================================
+# HEATWATCH — Docker Compose Database Stack
+# =============================================================
+#
+# Image: pgvector/pgvector:pg16
+#   ► Bundles PostgreSQL 16 + PostGIS 3 + pgvector 0.7+
+#   ► Official pgvector project image
+#   ► See: https://hub.docker.com/r/pgvector/pgvector
+#
+# Start:   docker compose up -d
+# Stop:    docker compose down
+# Destroy: docker compose down -v   (removes volume/data)
+# Logs:    docker compose logs -f db
+# =============================================================
+
+version: "3.9"
+
+services:
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: heatwatch_db
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-heatwatch}
+      POSTGRES_USER: ${POSTGRES_USER:-heatwatch_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change_me_strong_password}
+
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+
+    volumes:
+      # Persistent data volume — survives container restarts
+      - heatwatch_pgdata:/var/lib/postgresql/data
+      # Optional: place init.sql here to auto-run on first container start
+      # - ./init.sql:/docker-entrypoint-initdb.d/00_init.sql:ro
+
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U ${POSTGRES_USER:-heatwatch_user} -d ${POSTGRES_DB:-heatwatch}
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+    # Resource limits — adjust for your development machine
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+
+volumes:
+  heatwatch_pgdata:
+    driver: local
+
+# =============================================================
+# Usage notes
+# =============================================================
+#
+# 1. Copy database/.env.example to database/.env and fill values.
+# 2. Run:  docker compose --env-file .env up -d
+# 3. Wait for healthy:  docker compose ps
+# 4. Connect:
+#      psql postgresql://heatwatch_user:change_me@localhost:5432/heatwatch
+# 5. Run migrations:
+#      bash database/scripts/migrate.sh
+#
+# The container exposes port 5432 on the host by default.
+# Change POSTGRES_PORT in .env if you have a conflict.
+# =============================================================

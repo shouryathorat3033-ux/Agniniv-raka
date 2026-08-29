@@ -1,0 +1,13 @@
+{
+  "dataset_name": "OSM Industrial Extract — India",
+  "dataset_type": "osm",
+  "source": "OSM",
+  "source_url": "https://overpass-turbo.eu/",
+  "source_reference": "overpass_industrial_india_20240601",
+  "file_path": "../dataset/raw/osm/india_industrial.geojson",
+  "file_format": "GeoJSON",
+  "crs": "EPSG:4326",
+  "temporal_start": "2024-06-01T00:00:00Z",
+  "temporal_end": "2024-06-01T00:00:00Z",
+  "spatial_extent": {"min_lon": 68.0, "min_lat": 8.0, "max_lon": 97.0, "max_lat": 37.0}
+}

@@ -1,0 +1,86 @@
+================================================================================
+HeatWatch -- FIRMS Feature Engineering Report
+================================================================================
+Generated at   : 2026-08-29 04:50:13
+Script         : /app/dataset/processed/firms/feature_engineering.py
+
+INPUT
+-----
+File           : /app/dataset/processed/firms_india_2022_2024.csv
+Rows (input)   : 1,723,639
+Columns        : 16
+Original cols  : ['latitude', 'longitude', 'bright_ti4', 'scan', 'track', 'acq_date', 'acq_time', 'satellite', 'instrument', 'confidence', 'version', 'bright_ti5', 'frp', 'daynight', 'type', 'year']
+
+OUTPUT
+------
+File           : /app/dataset/processed/firms/firms_india_2022_2024_features.csv
+Rows (output)  : 1,723,639
+Row delta      : +0  (must be 0)
+
+ENGINEERED COLUMNS ADDED (13)
+-------------------------------------------------------
+  month
+  day
+  day_of_year
+  day_of_week
+  acquisition_hour
+  acquisition_minute
+  brightness_difference
+  confidence_score
+  frp_valid
+  frp_model
+  latitude_grid
+  longitude_grid
+  observation_id
+
+DATE RANGE
+----------
+Min acq_date   : 2022-01-01
+Max acq_date   : 2024-12-31
+
+CONFIDENCE DISTRIBUTION (original column)
+-------------------------------------------
+confidence
+n    1371444
+l     306117
+h      46078
+
+CONFIDENCE SCORE DISTRIBUTION (engineered)
+--------------------------------------------
+confidence_score
+1    1371444
+0     306117
+2      46078
+
+TYPE DISTRIBUTION
+------------------
+type
+0    1513192
+2     207092
+3       3337
+1         18
+
+DAY / NIGHT DISTRIBUTION
+-------------------------
+daynight
+D    1229082
+N     494557
+
+FRP SUMMARY
+------------
+Negative FRP count : 1
+Valid FRP count    : 1,723,638
+FRP original min   : -2.4400
+FRP original max   : 1552.8200
+FRP model    min   : 0.0000
+FRP model    max   : 1552.8200
+
+SPATIAL GRID (0.01deg x 0.01deg)
+----------------------------------
+Unique grid cells  : 619,980
+
+MISSING VALUE SUMMARY
+----------------------
+  (none -- no missing values detected)
+
+================================================================================

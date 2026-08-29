@@ -1,0 +1,38 @@
+==============================================================
+HeatWatch -- CDSE S3 Test Report
+==============================================================
+Timestamp         : 2026-08-29T06:20:46Z
+Script            : /app/dataset/processed/satellite/test_cdse_stac.py
+
+ENDPOINTS TESTED
+------------------------------
+S3  endpoint      : https://eodata.dataspace.copernicus.eu
+S3  bucket        : eodata
+STAC endpoint     : https://catalogue.dataspace.copernicus.eu/stac
+
+RESULTS
+------------------------------
+S3 endpoint reachable     : YES
+S3 authentication         : SUCCESS
+Sentinel-2 L2A accessible : YES
+STAC catalogue reachable  : YES
+
+FILES DOWNLOADED          : NONE (metadata listing only)
+
+S3 SAMPLE ENTRIES (prefix listing, no data downloaded)
+-------------------------------------------------------
+  Sentinel-2/MSI/L2A/2022/
+  Sentinel-2/MSI/L2A/2023/
+  Sentinel-2/MSI/L2A/2024/
+  Sentinel-2/MSI/L2A/2025/
+  Sentinel-2/MSI/L2A/2026/
+
+ISSUES
+------------------------------
+  None -- all checks passed.
+
+SECURITY NOTE
+------------------------------
+  Access keys and secret keys are NEVER written to this report.
+
+==============================================================

@@ -1,0 +1,15 @@
+{
+  "dataset_name": "NASA FIRMS VIIRS NOAA-20 — June 2024",
+  "dataset_type": "firms",
+  "source": "NASA_FIRMS",
+  "source_url": "https://firms.modaps.eosdis.nasa.gov/",
+  "source_reference": "DL_FIRE_J1V-C2_373073",
+  "file_path": "../dataset/raw/firms/DL_FIRE_J1V-C2_20240615.csv",
+  "file_format": "CSV",
+  "crs": "EPSG:4326",
+  "temporal_start": "2024-06-15T00:00:00Z",
+  "temporal_end": "2024-06-15T23:59:59Z",
+  "spatial_extent": {"min_lon": 60.0, "min_lat": 5.0, "max_lon": 100.0, "max_lat": 40.0},
+  "version": "Collection 2",
+  "ingestion_options": {"batch_size": 1000}
+}

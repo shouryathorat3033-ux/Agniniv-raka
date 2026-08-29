@@ -1,0 +1,31 @@
+==============================================================
+HeatWatch -- India Boundary Validation Report
+==============================================================
+Timestamp       : 2026-08-29T06:59:36Z
+
+FILE
+----------------------------------------
+Path            : /app/dataset/raw/boundaries/india_boundary.geojson
+Size            : 183.2 KB
+
+GEOJSON STRUCTURE
+----------------------------------------
+GeoJSON type    : FeatureCollection
+Features        : 1
+Geometry types  : {'MultiPolygon': 1}
+
+BOUNDING BOX
+----------------------------------------
+min_lon         : 68.143403
+min_lat         : 6.745551
+max_lon         : 97.362253
+max_lat         : 37.054484
+
+SHAPELY
+----------------------------------------
+Geometry valid  : True
+
+RESULT          : PASS
+Usable for spatial filtering: YES
+
+==============================================================
