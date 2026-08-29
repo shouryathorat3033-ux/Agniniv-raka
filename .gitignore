@@ -49,10 +49,16 @@ dataset/raw/**/*.hdf5
 dataset/raw/**/*.h5
 dataset/raw/**/*.jp2
 dataset/raw/**/*.SAFE
-# OSM extracts
+# OSM extracts — NEVER commit PBF files (gigabytes)
 dataset/raw/**/*.pbf
 dataset/raw/**/*.osm
 dataset/raw/**/*.osm.gz
+dataset/raw/**/*.osm.pbf
+# OSM temporary / partial downloads
+*.pbf.part
+*.osm.pbf.part
+# OSM checkpoint files (auto-generated, not committed)
+dataset/processed/osm/checkpoint.json
 # GeoPackage / Shapefile
 dataset/raw/**/*.gpkg
 dataset/raw/**/*.shp
