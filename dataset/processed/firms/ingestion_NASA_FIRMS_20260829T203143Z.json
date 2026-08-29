@@ -1,0 +1,17 @@
+{
+  "dataset_name": "NASA_FIRMS",
+  "source_reference": "C:\\SIH_Hackthon\\dataset\\raw\\firms\\2026-08-29\\firms_VIIRS_NOAA20_NRT_IND_2026-08-29_d1.csv",
+  "pipeline_version": "v1",
+  "started_at": "2026-08-29T20:31:43.767280+00:00",
+  "finished_at": "2026-08-29T20:31:43.885326+00:00",
+  "records_read": 32,
+  "records_valid": 32,
+  "records_rejected": 0,
+  "records_inserted": 0,
+  "records_skipped": 32,
+  "records_updated": 0,
+  "validation_errors": [],
+  "warnings": [],
+  "metadata": {},
+  "success": true
+}

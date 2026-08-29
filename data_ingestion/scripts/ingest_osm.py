@@ -39,7 +39,8 @@ _PROJECT_ROOT = _DI_ROOT.parent                          # SIH_Hackthon/
 sys.path.insert(0, str(_DI_ROOT))
 
 from dotenv import load_dotenv
-load_dotenv(_PROJECT_ROOT / ".env", override=False)
+# override=True: project-root .env is always authoritative
+load_dotenv(_PROJECT_ROOT / ".env", override=True)
 load_dotenv(_DI_ROOT / ".env", override=False)
 
 import click

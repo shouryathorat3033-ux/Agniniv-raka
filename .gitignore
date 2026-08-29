@@ -107,3 +107,7 @@ htmlcov/
 
 # Temporary download files
 *.tif.*
+
+# FIRMS raw downloads (API responses -- never commit)
+dataset/raw/firms/
+*.firms.csv

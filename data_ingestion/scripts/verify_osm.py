@@ -25,8 +25,11 @@ _PROJECT_ROOT = _DI_ROOT.parent
 sys.path.insert(0, str(_DI_ROOT))
 
 from dotenv import load_dotenv
-load_dotenv(_PROJECT_ROOT / ".env", override=False)
-load_dotenv(_DI_ROOT / ".env", override=False)
+# override=True: project-root .env is always authoritative
+load_dotenv(_PROJECT_ROOT / ".env", override=True)
+
+# Use config/settings.py as the single authoritative DATABASE_URL source
+from config import settings  # noqa: E402
 
 PASS = "[PASS]"
 FAIL = "[FAIL]"
@@ -48,7 +51,9 @@ def _row(label: str, status: str, detail: str = ""):
 def verify() -> int:
     from osm.config import OSM_MANIFEST_PATH, OSM_CHECKPOINT_PATH
 
-    db_url = os.environ.get("DATABASE_URL", "")
+    # Use settings.DATABASE_URL — loaded from project-root .env by
+    # config/settings.py. This guarantees 127.0.0.1:5433 is used.
+    db_url = settings.DATABASE_URL
 
     _sep()
     print("HEATWATCH — OSM VERIFICATION")

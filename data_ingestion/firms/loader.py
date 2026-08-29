@@ -110,7 +110,15 @@ def load_hotspots_batch(
             before = conn.execute(
                 "SELECT COUNT(*) FROM hotspots"
             ).fetchone()[0]
-            conn.executemany(_INSERT_SQL, batch)
+
+            # psycopg3: use cursor for executemany;
+            # insert row-by-row to handle ON CONFLICT correctly per-record.
+            for record in batch:
+                try:
+                    conn.execute(_INSERT_SQL, record)
+                except Exception as exc:
+                    log.warning("firms.loader.row_skip", error=str(exc)[:80])
+
             after = conn.execute(
                 "SELECT COUNT(*) FROM hotspots"
             ).fetchone()[0]

@@ -22,9 +22,11 @@ sys.path.insert(0, str(_DI_ROOT))
 
 from dotenv import load_dotenv
 
-# Load project-root .env FIRST — this is where the real credentials live.
-load_dotenv(_PROJECT_ROOT / ".env", override=False)
+# override=True: project-root .env is always authoritative
+load_dotenv(_PROJECT_ROOT / ".env", override=True)
 load_dotenv(_DI_ROOT / ".env", override=False)   # legacy fallback
+
+from config import settings  # noqa: E402 — must come after dotenv load
 
 PASS = "[PASS]"
 FAIL = "[FAIL]"
@@ -46,10 +48,11 @@ def _parse_url(db_url: str) -> dict:
 
 
 def verify() -> int:
-    db_url = os.environ.get("DATABASE_URL", "")
+    # Use settings.DATABASE_URL — always sourced from project-root .env
+    db_url = settings.DATABASE_URL
     if not db_url:
         print(f"{FAIL} DATABASE_URL not set.")
-        print(f"  → Copy C:\\SIH_Hackthon\\.env.example to .env and set DATABASE_URL.")
+        print(f"  → Set DATABASE_URL in C:\\SIH_Hackthon\\.env")
         return 1
 
     parsed = _parse_url(db_url)

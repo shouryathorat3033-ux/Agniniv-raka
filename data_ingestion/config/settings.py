@@ -18,13 +18,15 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 # ── Load .env from project root (one level above data_ingestion/) ─
-_HERE        = Path(__file__).resolve().parent.parent  # data_ingestion/
+_HERE         = Path(__file__).resolve().parent.parent  # data_ingestion/
 _PROJECT_ROOT = _HERE.parent                            # SIH_Hackthon/
 
-# Load project-root .env first (highest priority for real secrets),
-# then fall back to data_ingestion/.env for any overrides.
-load_dotenv(_PROJECT_ROOT / ".env", override=False)
-load_dotenv(_HERE / ".env", override=False)  # legacy / local overrides (if present)
+# IMPORTANT: override=True so the project-root .env ALWAYS wins.
+# Without this, a pre-existing DATABASE_URL in the shell environment
+# (e.g. from Docker Compose or a previous session) silently takes
+# precedence, causing connections to wrong hosts/ports.
+load_dotenv(_PROJECT_ROOT / ".env", override=True)
+load_dotenv(_HERE / ".env", override=False)  # legacy fallback only (never overrides root)
 
 
 # ── Database ──────────────────────────────────────────────────

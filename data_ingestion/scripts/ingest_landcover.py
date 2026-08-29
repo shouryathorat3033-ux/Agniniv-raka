@@ -36,9 +36,8 @@ sys.path.insert(0, str(DATA_INGESTION_ROOT))
 
 from dotenv import load_dotenv
 
-# Load project-root .env (has real DATABASE_URL with correct port),
-# then data_ingestion/.env as a legacy fallback.
-load_dotenv(PROJECT_ROOT / ".env", override=False)
+# override=True: project-root .env is always authoritative
+load_dotenv(PROJECT_ROOT / ".env", override=True)
 load_dotenv(DATA_INGESTION_ROOT / ".env", override=False)
 
 import click
