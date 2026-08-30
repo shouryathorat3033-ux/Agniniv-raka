@@ -1,8 +1,12 @@
 """
-HEATWATCH — OSM Database Operations
+HEATWATCH - OSM Database Operations
 ======================================
 Creates the osm_features table, indexes, and handles batch insertion.
 Reuses existing db.py connection pool and transaction helper.
+
+psycopg3 notes:
+  - Named parameters use %(name)s style with a dict argument to execute().
+  - Row-level executemany is used for batch inserts for efficiency.
 """
 from __future__ import annotations
 
@@ -16,7 +20,7 @@ from common.logging_config import get_logger
 
 log = get_logger(__name__)
 
-# ── DDL ────────────────────────────────────────────────────────
+# -- DDL --------------------------------------------------------------------
 
 _CREATE_TABLE_SQL = """
 CREATE TABLE IF NOT EXISTS osm_features (
@@ -49,6 +53,7 @@ CREATE INDEX IF NOT EXISTS idx_osm_features_osm_id
     ON osm_features (osm_id);
 """
 
+# psycopg3 named parameter style: %(name)s with a dict passed to execute()
 _UPSERT_SQL = """
 INSERT INTO osm_features (
     osm_id, feature_type, name, subtype, tags, source, geometry
@@ -61,8 +66,8 @@ VALUES (
     %(tags)s::jsonb,
     %(source)s,
     CASE
-        WHEN %(geometry_wkt)s IS NULL THEN NULL
-        ELSE ST_SetSRID(ST_GeomFromText(%(geometry_wkt)s), 4326)
+        WHEN %(geometry_wkt)s::text IS NULL THEN NULL
+        ELSE ST_SetSRID(ST_GeomFromText(%(geometry_wkt)s::text), 4326)
     END
 )
 ON CONFLICT ON CONSTRAINT uq_osm_features_id_type
@@ -105,18 +110,23 @@ def insert_batch(
     inserted = 0
     updated  = 0
 
+    # Build param list for the batch
+    params_list = []
+    for row in batch:
+        params_list.append({
+            "osm_id":       int(row["osm_id"]),
+            "feature_type": str(row["feature_type"]),
+            "name":         row.get("name"),
+            "subtype":      row.get("subtype"),
+            "tags":         row.get("tags") or "{}",
+            "source":       row.get("source", "OpenStreetMap"),
+            "geometry_wkt": row.get("geometry_wkt"),
+        })
+
     with transaction() as conn:
-        for row in batch:
-            result = conn.execute(_UPSERT_SQL, {
-                "osm_id":       row["osm_id"],
-                "feature_type": row["feature_type"],
-                "name":         row.get("name"),
-                "subtype":      row.get("subtype"),
-                "tags":         row.get("tags") or "{}",
-                "source":       row.get("source", "OpenStreetMap"),
-                "geometry_wkt": row.get("geometry_wkt"),
-            })
-            # rowcount=1 for INSERT, 0 for DO NOTHING (but we use DO UPDATE)
+        for params in params_list:
+            result = conn.execute(_UPSERT_SQL, params)
+            # psycopg3: rowcount is 1 for INSERT and 1 for UPDATE (not 0 like DO NOTHING)
             if result.rowcount > 0:
                 inserted += 1
 

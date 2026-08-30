@@ -1,0 +1,26 @@
+{
+    "source_url":  "https://download.geofabrik.de/asia/india-latest.osm.pbf",
+    "geometry_coverage":  "100% (all 14102 features have valid EPSG:4326 point geometry)",
+    "features_inserted":  14102,
+    "parser":  "osmium (pyosmium) - streaming queue",
+    "file_size_bytes":  1705374685,
+    "mode":  "node-only (no-way-geometry)",
+    "source":  "Geofabrik",
+    "generated_at":  "2026-08-30T11:30:47.3178712+05:30",
+    "status":  "success",
+    "input_file":  "india-latest.osm.pbf",
+    "region":  "India",
+    "country":  "India",
+    "dataset":  "OpenStreetMap",
+    "feature_counts":  {
+                           "park":  101,
+                           "hospital":  1012,
+                           "water":  47,
+                           "fire_station":  58,
+                           "building":  1163,
+                           "transport":  9871,
+                           "school":  1841,
+                           "road":  9
+                       },
+    "note":  "Node-point features. Way/relation geometry requires locations=True pass (future run)."
+}
